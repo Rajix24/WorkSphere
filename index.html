@@ -4,13 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkSphere</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="test" id="test">this is testing that follw files</div>
+    <section class="hero row vh-100">
+        <!-- modale -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ajoute une persone</h4>
+            </div>
+            <div class="modal-body">
+                <p>Enter the following please make sure that you enter all the formula</p>
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Name" required>
+                    <label for="imag">Image</label>
+                    <input type="file" id="input-file" accept="image/jfif, image/jpeg. image/png" class="form-control"  required>
+                    <img class="my-2" src="./img/2.jfif" id="photo-pic" alt="photo" width="100px" height="100px"><br>
+                    <label  for="email">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter Email" required>
+                    <label for="tel">Telephone</label>
+                    <input type="tel" class="form-control" placeholder="Enter Telephone" required>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Ajoute</button>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+        <!-- side Bar -->
+        <section class="sideBra gap-3 col-2 d-flex flex-column border border-primary ">
+            <div class="logo">
+                <p>WorkSphere</p>
+            </div>
+              <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#myModal">+Ajoute</button>
+            <div class="workers mt-4 d-flex flex-column border border-primary" id="workers">
+                 <div class="worker">
+                    <p>testing 3</p>
+                </div>
+            </div>
+        </section>
+        <!-- container -->
+        <section class="workplace col-10 border border-primary row">
+            <div class="parte-1 col-3">
+                <div class="Conference-room">
+                    <button class="btn btn-success">+</button>
+                </div>
+                <div class="Reception">
+                    <button class="btn btn-success">+</button>
+                </div>
+            </div>
+            <div class="parte-2 col-1"></div>
+            <div class="partie-3 col-8 border border-primary">
+                <div class="minparte-1 row border border-primary">
+                    <div class="Server-room col">
+                        <button class="btn btn-success">+</button>
+                    </div>
+                    <div class="Security-room col">
+                        <button class="btn btn-success">+</button>
+                    </div>
+                </div>
+                <div class="miniparat-2"></div>
+                <div class="miniparte-3 row">
+                    <div class="Staff-room col">
+                        <button class="btn btn-success">+</button>
+                    </div>
+                    <div class="Archives-room col">
+                            <button class="btn btn-success">+</button>
+                    </div>
+                </div>
+            </div>  
+        </section>
+    </section>
 
 
 
+
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
     <script src="script.js"></script>
 </body>
 </html>
