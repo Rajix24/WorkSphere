@@ -23,20 +23,29 @@
                 <p>Enter the following please make sure that you enter all the formula</p>
                 <form>
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Name" required>
+                    <input type="text" class="form-control" placeholder="Enter Name" id="modalName" required>
+                    <label for="role">Role</label>
+                    <select id="modalRole" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <option selected>Receptionists</option>
+                        <option value="IT">IT</option>
+                        <option value="security">security</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Cleaning">Cleaning</option>
+                        </select>
                     <label for="imag">Image</label>
-                    <input type="file" id="input-file" accept="image/jfif, image/jpeg. image/png" class="form-control"  required>
-                    <img class="my-2" src="./img/2.jfif" id="photo-pic" alt="photo" width="100px" height="100px"><br>
+                    <input type="file" id="input-file" accept="image/jfif, image/jpeg. image/png" id="modalImage" class="form-control "  required>
+                    <img class="my-2 rounded-circle " src="./img/2.jfif" id="photo-pic" alt="photo" width="100px" height="100px"><br>
                     <label  for="email">Email</label>
-                    <input type="email" class="form-control" placeholder="Enter Email" required>
+                    <input type="email" class="form-control" id="modalEmail" placeholder="Enter Email" required>
                     <label for="tel">Telephone</label>
-                    <input type="tel" class="form-control" placeholder="Enter Telephone" required>
-                    
+                    <input type="tel" class="form-control" id="modalTele" placeholder="Enter Telephone" required>
+                    <div id="exp"></div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal">Ajoute</button>
+                <button type="button" class="btn btn-outline-success" id="addExp">+Exp</button>
+                <button type="button" class="btn btn-default rerander" data-dismiss="modal">Close</button>
+                <button type="button" id="modalAddBtn" class="btn btn-success rerander" data-dismiss="modal">Ajoute</button>
             </div>
         </div>
         
@@ -49,9 +58,6 @@
             </div>
               <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#myModal">+Ajoute</button>
             <div class="workers mt-4 d-flex flex-column border border-primary" id="workers">
-                 <div class="worker">
-                    <p>testing 3</p>
-                </div>
             </div>
         </section>
         <!-- container -->
@@ -86,12 +92,6 @@
             </div>  
         </section>
     </section>
-
-
-
-
-
-
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
