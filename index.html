@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkSphere</title>
     <link rel="stylesheet" href="style/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
     <section class="hero row vh-100">
@@ -20,7 +20,7 @@
                 <h4 class="modal-title">Ajoute une persone</h4>
             </div>
             <div class="modal-body">
-                <p>Enter the following please make sure that you enter all the formula</p>
+                <span>Enter the following please make sure that you enter all the formula</span><br>
                 <form>
                     <label for="name">Name</label>
                     <input type="text" class="form-control" placeholder="Enter Name" id="modalName" required>
@@ -54,45 +54,70 @@
         <!-- side Bar -->
         <section class="sideBra gap-3 col-2 d-flex flex-column border border-primary ">
             <div class="logo">
-                <p>WorkSphere</p>
+                <h4>WorkSphere</h4>
             </div>
               <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#myModal">+Ajoute</button>
             <div class="workers mt-4 d-flex flex-column border border-primary" id="workers">
             </div>
         </section>
         <!-- container -->
-        <section class="workplace col-10 border border-primary row">
-            <div class="parte-1 col-3">
-                <div class="Conference-room">
-                    <button class="btn btn-success">+</button>
+        <section class="workplace col-10 border border-primary">
+            <div class="row cont vh-100 w-100" style="margin: 0">
+                <div class="parte-1 col-5">
+                    <div class="Conference-room borde d-flex flex-wrap" id="testing">
+                    <button type="button"onclick="meetingRome(event)" class="openModal btn btn-success" id="openModal">+</button>
+                    </div>
+                    <div class="Reception">
+                        <button onclick="test(event)"  class="btn btn-success" id="openModal">Receptionists</button>
+                    </div>
                 </div>
-                <div class="Reception">
-                    <button class="btn btn-success">+</button>
+                <div class="parte-2 col-2">
                 </div>
+                <div class="parte-3 col-5">
+                    <div class="minparte-1 row  border-primary">
+                        <div class="Server-room col border ">
+                            <button class="btn btn-success openModal"  onclick="test(event)" >IT</button>
+                        </div>
+                        <div class="Security-room col">
+                            <button class="btn btn-success openModal"   onclick="test(event)" >security</button>
+                        </div>
+                    </div>
+                    <div class="miniparat-2"></div>
+                    <div class="miniparte-3 col-4 row"> 
+                        <div class="Staff-room col">
+                            <button class="btn btn-success openModal" onclick="workersRomme(event)" >+</button>
+                        </div>
+                        <div class="Archives-room col">
+                                <button class="btn btn-success openModal"  onclick="archifRomme(event)" >+</button>
+                        </div>
+                    </div>
+                </div>  
             </div>
-            <div class="parte-2 col-1"></div>
-            <div class="partie-3 col-8 border border-primary">
-                <div class="minparte-1 row border border-primary">
-                    <div class="Server-room col">
-                        <button class="btn btn-success">+</button>
-                    </div>
-                    <div class="Security-room col">
-                        <button class="btn btn-success">+</button>
-                    </div>
-                </div>
-                <div class="miniparat-2"></div>
-                <div class="miniparte-3 row">
-                    <div class="Staff-room col">
-                        <button class="btn btn-success">+</button>
-                    </div>
-                    <div class="Archives-room col">
-                            <button class="btn btn-success">+</button>
-                    </div>
-                </div>
-            </div>  
         </section>
     </section>
+ <!-- section of the pers -->
+<div class="modal thismodal" id="thatisModal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Choice worker</h5>
+      </div>
+      <div class="modal-body bodyModal" id="cardslist">
+        <p>You can choice just one</p>
 
+      </div>
+      <div class="modal-footer">
+        <button class="closeWorkerBar  btn btn-default" id="colseBar">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="crad">
+    
+</div>
+ <!-- secript sectiuon -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
     <script src="script.js"></script>

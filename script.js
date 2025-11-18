@@ -32,11 +32,11 @@ modalAddBtn.addEventListener("click" , () => {
         email : modalEmail,
         tele : modalTele,
         exprience:
-                    [{
-                    company :modalExpCompany,
-                    role: modalExpRole,
-                    duree: modalExpDuree
-                            }]
+                [{
+                company :modalExpCompany,
+                role: modalExpRole,
+                duree: modalExpDuree
+                        }]
         }
 
 
@@ -60,8 +60,8 @@ modalAddBtn.addEventListener("click" , () => {
 });
 //a daymanic imput for Exp
 document.getElementById("addExp").addEventListener("click", () => {
-    document.getElementById("exp").innerHTML += `
-                                                <form class="d-flex my-5 gap-2 flex-column" id="dd">
+    let card = `
+                                                <form class="d-flex my-5 gap-2 flex-column" id="dd" name="">
                                                 <h4>exp</h4>
                                                     <lable>Company</lable> 
                                                     <input type="text" name="conpany" id="companyDInput" class="form-control test">
@@ -71,6 +71,7 @@ document.getElementById("addExp").addEventListener("click", () => {
                                                     <input type="number" name="duree" id ="dureeDInput" class="dureeDInput form-control test3">
                                                 </form>
     `
+    document.getElementById("exp").insertAdjacentHTML('beforeend',card) 
 })
 
 //function that get items to local storage NB I will add some of the condition if it empty or if someone doublecat 
@@ -89,27 +90,103 @@ function randerWorker(data) {
     //afich in html id done;
     const workersPlaceHolder = document.getElementById("workers");//the  selection are good
     workersPlaceHolder.innerHTML +=`
-                    <div class="worker p-2 d-flex gap-3 align-items-center justify-content-sm-evenly">
+                    <div class="worker p-2 d-flex gap-3 align-items-center justify-content-sm-evenly" id="worker">
                         <div class="worker-img">
-                            <img src="${data.img}" alt="photo-image " class="border rounded-circle " id="image" width="60px" height="60px">
+                            <img   src="${data.img}" alt="photo-image " class="border rounded-circle " id="image" width="60px" height="60px">
                         </div>
                         <div class="worker-info d-flex flex-column pt-3 " >
-                            <h6 class="fs-4 w-100 border">${data.name}</h6>
-                            <p class="worker-position"> ${data.role} </p>
+                            <h6 class="fs-4 w-100 border"  >${data.name}</h6>
+                            <p class="worker-position Role" name ="para" id="WorkeRole">${data.role}</p>
                         </div>
                         <button class="btn btn-outline-success border"><ion-icon name="create-sharp"></ion-icon></button>
                     </div> 
     `   
 }
+// =====================================  container  =====================================
+// ===================================== modalper    =====================================
 
+function test(e){
+    document.getElementById('thatisModal').style.display ="block"//that is show the modal
+     const cardWorker = document.querySelectorAll(".worker");
+    const place = document.getElementById("cardslist")
+    
+    cardWorker.forEach(element => {   //list of the array
+        if( element.querySelector('#WorkeRole').innerHTML == e.target.textContent){
+            place.appendChild(element)
+        }
+})
+}
 
+document.getElementById("colseBar").addEventListener("click", returnAllworkerToWorkerPlace)
 
+// ==============================================
+function meetingRome(e){//only for cleaner and mangers
+    document.getElementById('thatisModal').style.display ="block"//that is show the modal
+    const cardWorker = document.querySelectorAll(".worker");
+    const place = document.getElementById("cardslist")
 
+   
+    cardWorker.forEach(element => {   //list of the array
+        if( element.querySelector('#WorkeRole').innerHTML == "Manager" || element.querySelector('#WorkeRole').innerHTML == "Cleaning"){
+            place.appendChild(element)
+        }
 
+    })
 
+}
 
+function workersRomme () {//you can place evreyOne
+    document.getElementById('thatisModal').style.display ="block"//that is show the modal
+    const cardWorker = document.querySelectorAll(".worker");
+    const place = document.getElementById("cardslist")
+    cardWorker.forEach(element => {   //list of the array
+            place.appendChild(element)
+    })
+}
 
+function archifRomme (){
+    document.getElementById('thatisModal').style.display ="block"//that is show the modal
+    const cardWorker = document.querySelectorAll(".worker");
+    const place = document.getElementById("cardslist")
+    cardWorker.forEach(element => {   //list of the array
+        if(element.querySelector('#WorkeRole').innerHTML !== "Cleaning"){
+            place.appendChild(element)
+        }
+    })
+}
 
-
-
-
+document.getElementById("cardslist").addEventListener('click', addToBord)
+function addToBord () {
+     const BB = document.getElementById("openModal");
+     const cardWorker = document.querySelectorAll(".worker");
+     const border = document.querySelector(".borde")
+    // const testing = document.querySelectorAll("#cardslist")
+  
+     cardWorker.forEach(element => {
+        element.addEventListener("click", ()=>{
+            border.appendChild(element)
+        })
+     });   
+     console.log(border.childElementCount);
+     console.log(border.length);
+     
+     
+     if(border.childElementCount == 1){
+        BB.outerHTML = ``;
+     }else{
+        BB.outerHTML = '<button type="button"onclick="meetingRome(event)" class="openModal btn btn-success" id="openModal">+</button>'
+     }
+ }
+ const aa = document.querySelectorAll(".worker")
+ console.log(aa.length  )
+// function addToBord() {
+//     const border = document.querySelector(".borde")
+//     border.appendChild(cardWorker)
+// }
+function returnAllworkerToWorkerPlace (){
+    document.getElementById('thatisModal').style.display ="none"
+    const cardsss = document.getElementById('cardslist')
+    cardsss.querySelectorAll(".worker").forEach(element => {
+        document.getElementById("workers").appendChild(element)
+    });
+}
