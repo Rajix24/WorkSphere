@@ -183,10 +183,15 @@ function addToBord () {
 //     const border = document.querySelector(".borde")
 //     border.appendChild(cardWorker)
 // }
-function returnAllworkerToWorkerPlace (){
+function returnAllworkerToWorkerPlace (){   
     document.getElementById('thatisModal').style.display ="none"
     const cardsss = document.getElementById('cardslist')
     cardsss.querySelectorAll(".worker").forEach(element => {
         document.getElementById("workers").appendChild(element)
     });
 }
+
+
+
+
+
