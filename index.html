@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
-    <section class="hero row vh-100">
+    <section class="hero p-2 row vh-100">
         <!-- modale -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -64,31 +64,31 @@
         <section class="workplace col-10 border border-primary">
             <div class="row cont vh-100 w-100" style="margin: 0">
                 <div class="parte-1 col-5">
-                    <div class="Conference-room borde d-flex flex-wrap" id="testing">
-                    <button type="button"onclick="meetingRome(event)" class="openModal btn btn-success" id="openModal">+</button>
+                    <div class="Conference-room borde1 d-flex flex-wrap" id="testing">
+                    <button type="button"onclick="meetingRome()" class="openModal btn btn-success"  id="btn1">+</button>
                     </div>
-                    <div class="Reception">
-                        <button onclick="test(event)"  class="btn btn-success" id="openModal">Receptionists</button>
+                    <div class="Reception borde2 d-flex flex-wrap ">
+                        <button onclick="Receptionists()"  class="btn btn-success " id="btn2" >+</button>
                     </div>
                 </div>
                 <div class="parte-2 col-2">
                 </div>
                 <div class="parte-3 col-5">
-                    <div class="minparte-1 row  border-primary">
-                        <div class="Server-room col border ">
-                            <button class="btn btn-success openModal"  onclick="test(event)" >IT</button>
+                    <div class="minparte-1 row  border-primary borde">
+                        <div class="Server-room col borde3 d-flex flex-wrap">
+                            <button class="btn btn-success openModal"id="btn3"  onclick="servuerRomme()" >+</button>
                         </div>
-                        <div class="Security-room col">
-                            <button class="btn btn-success openModal"   onclick="test(event)" >security</button>
+                        <div class="Security-room col borde4 d-flex flex-wrap">
+                            <button class="btn btn-success openModal" id="btn4"  onclick="secrityRomme()" >+</button>
                         </div>
                     </div>
                     <div class="miniparat-2"></div>
                     <div class="miniparte-3 col-4 row"> 
-                        <div class="Staff-room col">
-                            <button class="btn btn-success openModal" onclick="workersRomme(event)" >+</button>
+                        <div class="Staff-room col borde5 d-flex flex-wrap">
+                            <button class="btn btn-success openModal" id="btn5" onclick="workersRomme(event)" >+</button>
                         </div>
-                        <div class="Archives-room col">
-                                <button class="btn btn-success openModal"  onclick="archifRomme(event)" >+</button>
+                        <div class="Archives-room col borde6 d-flex flex-wrap">
+                                <button class="btn btn-success openModal " id="btn6" onclick="archifRomme(event)" >+</button>
                         </div>
                     </div>
                 </div>  
