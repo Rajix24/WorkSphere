@@ -21,11 +21,11 @@
             </div>
             <div class="modal-body">
                 <span>Enter the following please make sure that you enter all the formula</span><br>
-                <form>
+                <form name="modalForm">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Name" id="modalName" required>
+                    <input type="text" class="form-control" name="modalName" placeholder="Enter Name" id="modalName" required>
                     <label for="role">Role</label>
-                    <select id="modalRole" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <select id="modalRole" class="form-select form-select-lg mb-3" name="modalRole" aria-label=".form-select-lg example">
                         <option selected>Receptionists</option>
                         <option value="IT">IT</option>
                         <option value="security">security</option>
@@ -36,9 +36,9 @@
                     <input type="file" id="input-file" accept="image/jfif, image/jpeg. image/png" id="modalImage" class="form-control "  required>
                     <img class="my-2 rounded-circle " src="./img/2.jfif" id="photo-pic" alt="photo" width="100px" height="100px"><br>
                     <label  for="email">Email</label>
-                    <input type="email" class="form-control" id="modalEmail" placeholder="Enter Email" required>
+                    <input type="email" class="form-control" id="modalEmail"name="modalEmail" placeholder="Enter Email" required>
                     <label for="tel">Telephone</label>
-                    <input type="tel" class="form-control" id="modalTele" placeholder="Enter Telephone" required>
+                    <input type="tel" class="form-control" id="modalTele" name="modalTele" placeholder="Enter Telephone" required>
                     <div id="exp"></div>
                 </form>
             </div>
@@ -57,15 +57,15 @@
                 <h4>WorkSphere</h4>
             </div>
               <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#myModal">+Ajoute</button>
-            <div class="workers mt-4 d-flex flex-column border border-primary" id="workers">
+            <div class=" mt-4 d-flex flex-column border border-primary" id="workers">
             </div>
         </section>
         <!-- container -->
         <section class="workplace col-10 border border-primary">
             <div class="row cont vh-100 w-100" style="margin: 0">
                 <div class="parte-1 col-5">
-                    <div class="Conference-room borde1 d-flex flex-wrap" id="testing">
-                    <button type="button"onclick="meetingRome()" class="openModal btn btn-success"  id="btn1">+</button>
+                    <div class="Conference-room  d-flex flex-wrap" id="borde1">
+                    <button type="button" class="openModal btn btn-success"  id="btn1">+</button>
                     </div>
                     <div class="Reception borde2 d-flex flex-wrap ">
                         <button onclick="Receptionists()"  class="btn btn-success " id="btn2" >+</button>

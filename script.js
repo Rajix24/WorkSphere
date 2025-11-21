@@ -1,59 +1,58 @@
-//element that selecte for image in the modal
-const photo = document.getElementById('photo-pic');//that now are selected
-const photoinput = document.getElementById('input-file');//that now are selected 
-//selecting the element in modal:
+let idGeneratorCounter = 1;
+let employeList = [];
 
-//select model:
-const modalAddBtn = document.getElementById('modalAddBtn');//selected
-//varaibles:
-    let counter = 0;
-//function that change the user
-photoinput.onchange = function (){
-     photo.src = URL.createObjectURL(photoinput.files[0]);
-}
-//event for the modal-input
-modalAddBtn.addEventListener("click" , () => {
-    const modaRole = document.getElementById('modalRole').value;//selected
-    const modalName = document.getElementById('modalName').value;//selected
-    const modalEmail = document.getElementById('modalEmail').value;//selected
-    const modalTele = document.getElementById('modalTele').value;//selected
-    const modalExpCompany = document.getElementsByClassName('test').value;//selacted
-    const modalExpRole = document.getElementsByClassName('test2').value//selected
-    const modalExpDuree = document.querySelectorAll('#test3').value//selected
-    const modalform = document.getElementById('dd')
-     let arr = []
+let mettingRomme = [];
+let receptionRomme = [];
+let srveurRomme = [];
+let scurityRomme =[];
+let employeRomme = [];
+let archiveRomme = [];
+let modalList = [];
 
-
+window.addEventListener("load", () =>{
+    employeList =  JSON.parse(localStorage.getItem('employelist')) || []
+    randerWorker(workersPlaceHolder, employeList);
+})
+employeList =  JSON.parse(localStorage.getItem('employelist')) || []
     
-    const infoWorker = {
-        name : modalName,
-        role : modaRole,
-        img : photo.src,
-        email : modalEmail,
-        tele : modalTele,
-        exprience:
-                [{
-                company :modalExpCompany,
-                role: modalExpRole,
-                duree: modalExpDuree
-                        }]
-        }
-
-
-    
-    //function store data 
-    setToLocalStorage(counter, infoWorker);
-    //function that get data 
-    const data = getFromLocalStorage(counter)
-    //function for rander workers
-    randerWorker(data);
-    // function that restatrt input 
    
-    counter++;
+
+const workersPlaceHolder = document.getElementById("workers");
+const metting = document.getElementById("borde1");
+const cardModalList = document.getElementById("cardslist");
+const employee = document.querySelectorAll(".worker")
+//=======================================================
+const workerRome = document.getElementById("borde5")
+
+
+
+modalAddBtn.addEventListener("click" , () => {
+    const form = document.forms["modalForm"]
+    
+console.log(form.modalName.value)//the value are there
+
+    const employer = {
+        id : idGeneratorCounter,
+        name : form.modalName.value,
+        role : form.modalRole.value,
+        email : form.modalEmail.value,
+        tele : form.modalTele.value,
+        exprience:[]
+        }
+    // console.log(employer)//the value are there
+
+    employeList.push(employer)
+    console.log(employeList)
+
+
+    setToLocalStorage('employelist',employeList);
+    
+    randerWorker(workersPlaceHolder, [employer]);
+    idGeneratorCounter++;
 })
 
 //that function is rerander the madal
- document.querySelectorAll(".rerander").forEach(element => {
+document.querySelectorAll(".rerander").forEach(element => {
      element.addEventListener("click", ()=> {
          document.getElementById("exp").innerHTML = ""
     }) 
@@ -76,102 +75,105 @@ document.getElementById("addExp").addEventListener("click", () => {
 
 //function that get items to local storage NB I will add some of the condition if it empty or if someone doublecat 
 function setToLocalStorage(keyName, obj) {
+    if(localStorage.getItem('employelist')){
+        employeList = JSON.parse(localStorage.getItem('employelist'))
+    }
     localStorage.setItem(keyName, JSON.stringify(obj));
 }
 //function that getting the items from local storage
-function getFromLocalStorage(keyName) {
-    const dataString = localStorage.getItem(keyName)
+function getFromLocalStorage() {
+    const dataString = localStorage.getItem(counter)
     const data = JSON.parse(dataString);
     return data;
 }
 
-//function that rander worker 
-function randerWorker(data) {
-    //afich in html id done;
-    const workersPlaceHolder = document.getElementById("workers");//the  selection are good
-    workersPlaceHolder.innerHTML +=`
-                    <div class="worker p-2 d-flex gap-3 align-items-center justify-content-sm-evenly" id="A-${counter}">
+function randerWorker(position, DataList) {
+    DataList.forEach(element => {
+    position.innerHTML +=`
+                    <div class="worker bg-dfault p-2 d-flex gap-3 align-items-center justify-content-sm-evenly" id="${idGeneratorCounter}">
                         <div class="worker-img">
-                            <img   src="${data.img}" alt="photo-image " class="border rounded-circle " id="image" width="60px" height="60px">
+                            <img   src="https://avatar.iran.liara.run/public" alt="photo-image " class="border rounded-circle " id="image" width="60px" height="60px">
                         </div>
                         <div class="worker-info d-flex flex-column pt-3 " >
-                            <h6 class="fs-4 w-100 border"  >${data.name}</h6>
-                            <p class="worker-position Role" name ="para" id="WorkeRole">${data.role}</p>
+                            <h6 class="fs-4 w-100 border"  >${element.name}</h6>
+                            <p class="worker-position Role" name ="para">${element.role}</p>
                         </div>
-                        <button class="btn btn-danger border btnRemove" >X</button>
+                        <button class="btn btn-danger border" id="testing" >X</button>
                     </div> 
     `   
+    modalList = []
+    });
+    return position;
 }
-// =====================================  container  =====================================
-// ===================================== modalper    =====================================
-
-// function test(e){
-//     document.getElementById('thatisModal').style.display ="block"//that is show the modal
-//      const cardWorker = document.querySelectorAll(".worker");
-//     const place = document.getElementById("cardslist")
-    
-//     cardWorker.forEach(element => {   //list of the array
-//         if( element.querySelector('#WorkeRole').innerHTML == e.target.textContent){
-//             place.appendChild(element)
-//         }
+// remove()
+// function remove () {
+//     document.getElementById("").addEventListener("click", () =>{
+//         console.log("test test mmmmmm")
 // })
 // }
 
 
-// ==================================== function for eatch borde ==========
-function meetingRome(){//only for cleaner and mangers
-    document.getElementById('thatisModal').style.display ="block"//that is show the modal
-    const cardWorker = document.querySelectorAll(".worker");
-    const place = document.getElementById("cardslist")
-    
-    cardWorker.forEach(element => {   //list of the array
-        if( element.querySelector('#WorkeRole').innerHTML == "Manager" || element.querySelector('#WorkeRole').innerHTML == "Cleaning"){
-            place.appendChild(element)
-        }
-        
-    })
-    document.getElementById("cardslist").addEventListener('click', addToBord)
-    
-        function addToBord () {
-        const cardWorker = document.querySelectorAll(".worker");
-        const border = document.querySelector(".borde1")
-        cardWorker.forEach(element => {
-            element.addEventListener("click", ()=>{
-                border.appendChild(element)
-            })
-        });      
-        if(border.childElementCount > 2){
-            BB.outerHTML = ``;
-            returnAllworkerToWorkerPlace()
-        }
-    }
 
-    
-}
-function workersRomme () {//you can place evreyOne
-    document.getElementById('thatisModal').style.display ="block"//that is show the modal
-    const cardWorker = document.querySelectorAll(".worker");
-    const place = document.getElementById("cardslist")
-    cardWorker.forEach(element => {   //list of the array
-        place.appendChild(element)
-    })
-    document.getElementById("cardslist").addEventListener('click', addToBord)
-    
-    function addToBord () {
-        const cardWorker = document.querySelectorAll(".worker");
-        const border = document.querySelector(".borde5")
-        cardWorker.forEach(element => {
-            element.addEventListener("click", ()=>{
-                border.appendChild(element)
-                element.innerHTML = +`<button>X</button>`
-                
-            })
-        });      
-        if(border.childElementCount > 2){
-            BB.outerHTML = ``;
-            returnAllworkerToWorkerPlace()
+
+// ==================================== function for eatch borde ==========
+
+document.getElementById("btn1").addEventListener("click", meetingRome)
+function meetingRome(){
+    document.getElementById('thatisModal').style.display ="block";
+    employeList.forEach(element => {
+        if (element.role == "Manager") {
+            let index = employeList.indexOf(element)
+            modalList.push(element)
+            employeList.splice(index, 1)
+            employeList.pop()
+            randerWorker(cardModalList, modalList)
         }
-    }
+        cardModalList.addEventListener("click", ToMeeting)
+    });
+
+
+
+
+
+
+    //fuction that rander one element 
+    // how can I wirthe to one element 
+
+
+
+    //  const cardWorker = document.querySelectorAll('.worker')
+    //  const place = document.getElementById("cardslist")
+    //  const border = document.querySelector(".borde1")
+    //  document.getElementById('thatisModal').style.display ="block"
+    //  if(border.childElementCount > 1){
+    //      BB.outerHTML = ``;
+    //      document.getElementById('thatisModal').style.display ="none"
+    //      returnAllworkerToWorkerPlace()
+     
+    //  cardWorker.forEach(element => {
+    //  if( element.querySelector('.Role').innerHTML == "Manager" || element.querySelector('.Role').innerHTML == "Cleaning"){
+    //      place.appendChild(element)
+    //     } 
+    //     }
+    //  document.getElementById("cardslist").addEventListener('click', () =>{
+    //      cardWorker.forEach(element => {
+    //          element.addEventListener("click", ()=>{
+    //              border.appendChild(element)
+    //          })
+    //      });      
+    //  })
+    //  )}
+}
+
+document.getElementById("btn5").addEventListener("click", workersRomme)
+function workersRomme () {
+    document.getElementById('thatisModal').style.display ="block";
+    employeList.forEach(element => {
+            modalList.push(element)
+            let index = employeList.indexOf(element)
+            randerWorker(cardModalList, modalList)
+        cardModalList.addEventListener("click", toWorker)
+    });
 }
 function archifRomme (){
     document.getElementById('thatisModal').style.display ="block"//that is show the modal
@@ -276,7 +278,6 @@ function Receptionists() {
     
 }
 
-document.getElementById("colseBar").addEventListener("click", returnAllworkerToWorkerPlace)
 function returnAllworkerToWorkerPlace (){   
     document.getElementById('thatisModal').style.display ="none"
     const cardsss = document.getElementById('cardslist')
@@ -285,22 +286,47 @@ function returnAllworkerToWorkerPlace (){
     });
 }
 
-        
-        
 
-// document.getElementById("cardslist").addEventListener('click', addToBord)
-// function addToBord () {
-//     const cardWorker = document.querySelectorAll(".worker");
-//     const border = document.querySelector(".borde1")
-//     cardWorker.forEach(element => {
-//         element.addEventListener("click", ()=>{
-//             border.appendChild(element)
-//         })
-//     });      
-//     if(border.childElementCount == 2){
-//         BB.outerHTML = ``;
-//         returnAllworkerToWorkerPlace()
-//     }
-// }
+document.getElementById("colseBar").addEventListener("click", cleos)
+function cleos () {
+    document.getElementById('thatisModal').style.display ="none";
+    // modalList.length = 0;
+}
+//mettingRomme
+function ToMeeting(event) {
+    const clickedElement = event.target;
+    modalList.forEach(element => {
+        if (clickedElement.id == element.id) {
+            mettingRomme.push(element)
+            randerOneEmploye(metting, element)
+        }
+    });
+    
+}
+function toWorker (event) {
+    const clickedElement = event.target;
+    modalList.forEach(element => {
+        if (clickedElement.id == element.id) {
+            mettingRomme.push(element)
+            randerOneEmploye(workerRome, element)
+        }
+    });
+}
 
-        
+
+
+
+function randerOneEmploye(position, obj) {
+    position.innerHTML +=`
+    <div class="worker bg-dfault p-2 d-flex gap-3 align-items-center justify-content-sm-evenly" id="A-${idGeneratorCounter}">
+    <div class="worker-img">
+    <img   src="https://avatar.iran.liara.run/public" alt="photo-image " class="border rounded-circle " id="image" width="60px" height="60px">
+    </div>
+    <div class="worker-info d-flex flex-column pt-3 " >
+    <h6 class="fs-4 w-100 border"  >${obj.name}</h6>
+    <p class="worker-position Role" name ="para">${obj.role}</p>
+    </div>
+    <button class="btn btn-danger border" id="testing" >X</button>
+    </div> 
+    `   
+}
